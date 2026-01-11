@@ -1225,9 +1225,10 @@
 
         /* Countdown Section */
         .countdown {
-            background: var(--navy);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-light) 50%, var(--cream) 100%);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
         }
 
         .countdown::before {
@@ -1236,49 +1237,120 @@
             top: 0;
             left: 0;
             right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .countdown::after {
+            content: '';
+            position: absolute;
             bottom: 0;
-            background:
-                linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
-                linear-gradient(315deg, rgba(123, 147, 164, 0.15) 0%, transparent 50%);
-            pointer-events: none;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
         }
 
         .countdown-wrapper {
             position: relative;
             z-index: 1;
             text-align: center;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .countdown-ornament {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
         }
 
         .countdown-label {
             font-size: 0.7rem;
             letter-spacing: 6px;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--dusty-blue);
             margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid rgba(201, 162, 39, 0.3);
         }
 
         .countdown-title {
             font-family: 'Pinyon Script', cursive;
             font-size: clamp(2.5rem, 6vw, 4rem);
-            color: var(--cream-light);
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .countdown-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-light);
             margin-bottom: 3rem;
+        }
+
+        .countdown-date-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-date-item {
+            text-align: center;
+        }
+
+        .countdown-date-number {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4rem;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .countdown-date-label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dusty-blue);
+            margin-top: 0.5rem;
+        }
+
+        .countdown-date-separator {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 3rem;
+            color: var(--gold);
+        }
+
+        .countdown-divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 0 auto 3rem;
         }
 
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .countdown-item {
             text-align: center;
-            min-width: 100px;
+            min-width: 130px;
             padding: 2rem 1.5rem;
-            background: rgba(250, 249, 247, 0.08);
-            border: 1px solid rgba(201, 162, 39, 0.3);
-            backdrop-filter: blur(10px);
+            background: white;
+            border-radius: 0;
             position: relative;
+            border: 1px solid rgba(201, 162, 39, 0.25);
+            box-shadow: 0 10px 40px rgba(74, 85, 104, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .countdown-item::before {
@@ -1290,26 +1362,65 @@
             bottom: 8px;
             border: 1px solid rgba(201, 162, 39, 0.15);
             pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(74, 85, 104, 0.15);
+        }
+
+        .countdown-item:hover::before {
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-color: var(--gold);
         }
 
         .countdown-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 8vw, 4.5rem);
-            font-weight: 300;
-            color: var(--cream-light);
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            color: var(--navy);
             line-height: 1;
+            position: relative;
         }
 
         .countdown-unit {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--dusty-blue);
             margin-top: 1rem;
+            font-weight: 400;
         }
 
         .countdown-separator {
-            display: none;
+            display: flex;
+            align-items: center;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 3rem;
+            color: var(--gold);
+            padding: 0 0.5rem;
+        }
+
+        .countdown-message {
+            margin-top: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-light);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown-ornament-bottom {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-top: 2rem;
+            opacity: 0.8;
         }
 
         /* Details Section */
@@ -1882,12 +1993,28 @@
             }
 
             .countdown-timer {
-                gap: 1rem;
+                gap: 0.75rem;
             }
 
             .countdown-item {
-                min-width: 80px;
+                min-width: 100px;
                 padding: 1.5rem 1rem;
+            }
+
+            .countdown-date-display {
+                gap: 1rem;
+            }
+
+            .countdown-date-number {
+                font-size: 3rem;
+            }
+
+            .countdown-date-separator {
+                font-size: 2rem;
+            }
+
+            .countdown-separator {
+                display: none;
             }
 
             .reminders-grid {
@@ -2048,7 +2175,32 @@
             }
 
             .countdown-number {
+                font-size: 3rem;
+            }
+
+            .countdown-date-display {
+                gap: 0.75rem;
+            }
+
+            .countdown-date-number {
                 font-size: 2.5rem;
+            }
+
+            .countdown-date-separator {
+                font-size: 1.5rem;
+            }
+
+            .countdown-title {
+                font-size: 2.5rem;
+            }
+
+            .countdown-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .countdown-message {
+                font-size: 1rem;
             }
 
             .dresscode-grid {
@@ -2400,26 +2552,54 @@
         <!-- Countdown Section -->
         <section class="section countdown" id="countdown">
             <div class="countdown-wrapper">
+                <p class="countdown-ornament fade-up">&#10022; &#10022; &#10022;</p>
                 <p class="countdown-label fade-up">Save the Date</p>
                 <h2 class="countdown-title fade-up delay-1">Counting Down To Forever</h2>
-                <div class="countdown-timer fade-up delay-2">
+                <p class="countdown-subtitle fade-up delay-1">March 28, 2026 at 3:00 PM</p>
+
+                <div class="countdown-date-display fade-up delay-2">
+                    <div class="countdown-date-item">
+                        <div class="countdown-date-number">03</div>
+                        <div class="countdown-date-label">March</div>
+                    </div>
+                    <span class="countdown-date-separator">.</span>
+                    <div class="countdown-date-item">
+                        <div class="countdown-date-number">28</div>
+                        <div class="countdown-date-label">Day</div>
+                    </div>
+                    <span class="countdown-date-separator">.</span>
+                    <div class="countdown-date-item">
+                        <div class="countdown-date-number">26</div>
+                        <div class="countdown-date-label">Year</div>
+                    </div>
+                </div>
+
+                <div class="countdown-divider fade-up delay-2"></div>
+
+                <div class="countdown-timer fade-up delay-3">
                     <div class="countdown-item">
                         <div class="countdown-number" id="days">00</div>
                         <div class="countdown-unit">Days</div>
                     </div>
+                    <span class="countdown-separator">:</span>
                     <div class="countdown-item">
                         <div class="countdown-number" id="hours">00</div>
                         <div class="countdown-unit">Hours</div>
                     </div>
+                    <span class="countdown-separator">:</span>
                     <div class="countdown-item">
                         <div class="countdown-number" id="minutes">00</div>
                         <div class="countdown-unit">Minutes</div>
                     </div>
+                    <span class="countdown-separator">:</span>
                     <div class="countdown-item">
                         <div class="countdown-number" id="seconds">00</div>
                         <div class="countdown-unit">Seconds</div>
                     </div>
                 </div>
+
+                <p class="countdown-message fade-up delay-4">"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future."<br><strong>— Jeremiah 29:11</strong></p>
+                <p class="countdown-ornament-bottom fade-up delay-4">&#10022; &#10022; &#10022;</p>
             </div>
         </section>
 
