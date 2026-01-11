@@ -1425,8 +1425,24 @@
 
         /* Details Section */
         .details {
-            background: var(--cream);
+            background: var(--warm-beige-light);
             position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        /* Decorative background pattern */
+        .details-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(201, 162, 39, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(74, 85, 104, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .details::before {
@@ -1439,100 +1455,319 @@
             background: linear-gradient(to right, transparent, var(--gold), transparent);
         }
 
-        .details-wrapper {
-            text-align: center;
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .detail-card {
-            text-align: center;
-            padding: 3rem 2.5rem;
-            background: var(--cream-light);
-            position: relative;
-            border: 1px solid rgba(201, 162, 39, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        .detail-card::before {
+        .details::after {
             content: '';
             position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .details-wrapper {
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .details-ornament {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .details-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-light);
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Main Details Card - Single elegant card */
+        .details-main-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(250,249,247,0.98) 100%);
+            border: 1px solid rgba(201, 162, 39, 0.25);
+            padding: 4rem;
+            position: relative;
+            box-shadow:
+                0 30px 80px rgba(74, 85, 104, 0.12),
+                0 10px 30px rgba(201, 162, 39, 0.08);
+            margin-top: 2rem;
+        }
+
+        /* Decorative corner flourishes */
+        .details-main-card::before,
+        .details-main-card::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-color: var(--gold);
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .details-main-card::before {
+            top: 20px;
+            left: 20px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .details-main-card::after {
+            bottom: 20px;
+            right: 20px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .details-corner-tr,
+        .details-corner-bl {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-color: var(--gold);
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .details-corner-tr {
+            top: 20px;
+            right: 20px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .details-corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+        }
+
+        /* Inner content frame */
+        .details-inner-frame {
             border: 1px solid rgba(201, 162, 39, 0.15);
-            pointer-events: none;
-            transition: all 0.4s ease;
+            padding: 3rem;
+            position: relative;
         }
 
-        .detail-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(74, 85, 104, 0.15);
+        .details-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
         }
 
-        .detail-card:hover::before {
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 8px;
+        .details-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Center divider with decorative elements */
+        .details-center-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .details-center-divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom,
+                transparent,
+                var(--gold) 20%,
+                var(--gold) 80%,
+                transparent);
+        }
+
+        .details-center-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--cream-light);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 5px 20px rgba(201, 162, 39, 0.2);
+        }
+
+        .details-center-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        /* Icon styling */
+        .detail-icon-wrapper {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
         }
 
         .detail-icon {
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--dusty-blue) 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--warm-beige-light) 0%, var(--cream-light) 100%);
+            border: 2px solid var(--gold);
             border-radius: 50%;
+            color: var(--navy);
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.15);
+        }
+
+        .detail-icon::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+
+        .detail-icon::after {
+            content: '';
+            position: absolute;
+            inset: -18px;
+            border: 1px dashed rgba(201, 162, 39, 0.2);
+            border-radius: 50%;
+            animation: rotateBorder 20s linear infinite;
+        }
+
+        @keyframes rotateBorder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* .details-card:hover .detail-icon {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
             color: white;
-            filter: drop-shadow(0 4px 15px rgba(74, 85, 104, 0.3));
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(201, 162, 39, 0.3);
+        } */
+
+        .details-card:hover .detail-icon::before {
+            inset: -15px;
+            border-color: var(--gold);
+        }
+
+        .detail-label {
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--dusty-blue);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border: 1px solid rgba(123, 147, 164, 0.3);
+            background: rgba(123, 147, 164, 0.05);
         }
 
         .detail-title {
             font-family: 'Pinyon Script', cursive;
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             color: var(--navy);
             margin-bottom: 1.5rem;
+            line-height: 1;
+            position: relative;
+            display: inline-block;
         }
 
-        .detail-info {
+        .detail-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .detail-content {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             color: var(--text-dark);
             line-height: 1.9;
         }
 
-        .detail-info strong {
+        .detail-content strong {
             font-weight: 600;
             color: var(--navy);
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-content .detail-venue {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--navy);
+            display: block;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .detail-time {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(201, 162, 39, 0.05) 100%);
+            border: 1px solid rgba(201, 162, 39, 0.4);
+            font-size: 1.1rem;
+            color: var(--navy);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .detail-time::before,
+        .detail-time::after {
+            content: '~';
+            color: var(--gold);
+            margin: 0 0.5rem;
         }
 
         .map-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.75rem;
             margin-top: 2rem;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--navy);
+            padding: 1.1rem 2.5rem;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dusty-blue) 100%);
+            border: none;
+            color: white;
             text-decoration: none;
             font-size: 0.75rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(74, 85, 104, 0.25);
         }
 
         .map-link::before {
@@ -1542,17 +1777,176 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: var(--gold);
-            transition: all 0.3s ease;
-            z-index: -1;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            transition: all 0.4s ease;
+            z-index: 0;
+        }
+
+        .map-link span {
+            position: relative;
+            z-index: 1;
         }
 
         .map-link:hover {
-            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(74, 85, 104, 0.3);
         }
 
         .map-link:hover::before {
             left: 0;
+        }
+
+        .map-link-icon {
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .details-message {
+            margin-top: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-light);
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .details-ornament-bottom {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Decorative floating elements */
+        .details-float-decor {
+            position: absolute;
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .details-float-1 {
+            top: 15%;
+            left: 5%;
+            animation: floatDecor 8s ease-in-out infinite;
+        }
+
+        .details-float-2 {
+            bottom: 20%;
+            right: 5%;
+            animation: floatDecor 10s ease-in-out infinite reverse;
+        }
+
+        /* Details Responsive */
+        @media (max-width: 900px) {
+            .details-main-card {
+                padding: 2.5rem;
+                margin: 2rem 1rem;
+            }
+
+            .details-inner-frame {
+                padding: 2rem 1.5rem;
+            }
+
+            .details-container {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .details-center-divider {
+                padding: 2rem 0;
+                flex-direction: row;
+            }
+
+            .details-center-divider::before {
+                top: 50%;
+                bottom: auto;
+                left: 0;
+                right: 0;
+                width: auto;
+                height: 1px;
+                background: linear-gradient(to right,
+                    transparent,
+                    var(--gold) 20%,
+                    var(--gold) 80%,
+                    transparent);
+            }
+
+            .details-main-card::before,
+            .details-main-card::after,
+            .details-corner-tr,
+            .details-corner-bl {
+                width: 50px;
+                height: 50px;
+            }
+
+            .details-main-card::before { top: 15px; left: 15px; }
+            .details-main-card::after { bottom: 15px; right: 15px; }
+            .details-corner-tr { top: 15px; right: 15px; }
+            .details-corner-bl { bottom: 15px; left: 15px; }
+
+            .detail-title {
+                font-size: 3rem;
+            }
+
+            .details-float-decor {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .details-main-card {
+                padding: 1.5rem;
+                margin: 1.5rem 0.5rem;
+            }
+
+            .details-inner-frame {
+                padding: 1.5rem 1rem;
+            }
+
+            .details-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .detail-title {
+                font-size: 2.5rem;
+            }
+
+            .detail-content {
+                font-size: 1.15rem;
+            }
+
+            .detail-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .details-main-card::before,
+            .details-main-card::after,
+            .details-corner-tr,
+            .details-corner-bl {
+                width: 35px;
+                height: 35px;
+            }
+
+            .details-main-card::before { top: 10px; left: 10px; }
+            .details-main-card::after { bottom: 10px; right: 10px; }
+            .details-corner-tr { top: 10px; right: 10px; }
+            .details-corner-bl { bottom: 10px; left: 10px; }
+
+            .map-link {
+                padding: 1rem 2rem;
+                font-size: 0.7rem;
+            }
         }
 
         /* Dress Code Section */
@@ -2222,14 +2616,6 @@
                 letter-spacing: 2px;
             }
 
-            .detail-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .details-grid {
-                gap: 1.5rem;
-            }
-
             .envelope-container {
                 width: 300px;
                 height: 400px;
@@ -2605,30 +2991,72 @@
 
         <!-- Details Section -->
         <section class="section details" id="details">
+            <!-- Background pattern -->
+            <div class="details-bg-pattern"></div>
+
+            <!-- Floating decorations -->
+            <span class="details-float-decor details-float-1">&#10022;</span>
+            <span class="details-float-decor details-float-2">&#10022;</span>
+
             <div class="details-wrapper">
+                <p class="details-ornament fade-up">&#10022; &#10022; &#10022;</p>
                 <p class="section-label fade-up">Celebration Details</p>
                 <h2 class="section-title fade-up delay-1">When & Where</h2>
-                <div class="details-grid">
-                    <div class="detail-card fade-up delay-2">
-                        <div class="detail-icon">&#128197;</div>
-                        <h3 class="detail-title">When</h3>
-                        <p class="detail-info">
-                            <strong>Saturday</strong><br>
-                            March 28, 2026<br>
-                            3:00 in the afternoon
-                        </p>
-                    </div>
-                    <div class="detail-card fade-up delay-3">
-                        <div class="detail-icon">&#128205;</div>
-                        <h3 class="detail-title">Where</h3>
-                        <p class="detail-info">
-                            <strong>Goshen Events Place & Retreat House</strong><br>
-                            Purok 1, Brgy. Carasuchi<br>
-                            Indang, Cavite
-                        </p>
-                        <a href="https://maps.google.com/?q=Goshen+Events+Place+Retreat+House+Indang+Cavite" target="_blank" class="map-link">View Map</a>
+                <p class="details-subtitle fade-up delay-1">We would be honored to have you join us</p>
+
+                <!-- Main Card with decorative frame -->
+                <div class="details-main-card fade-up delay-2">
+                    <!-- Corner decorations -->
+                    <div class="details-corner-tr"></div>
+                    <div class="details-corner-bl"></div>
+
+                    <!-- Inner frame -->
+                    <div class="details-inner-frame">
+                        <div class="details-container">
+                            <!-- When Card -->
+                            <div class="details-card">
+                                <div class="detail-icon-wrapper">
+                                    <div class="detail-icon">&#128197;</div>
+                                </div>
+                                <p class="detail-label">The Date</p>
+                                <h3 class="detail-title">When</h3>
+                                <div class="detail-content">
+                                    <strong>Saturday</strong>
+                                    March 28, 2026
+                                    <span class="detail-time">3:00 in the afternoon</span>
+                                </div>
+                            </div>
+
+                            <!-- Center Divider -->
+                            <div class="details-center-divider">
+                                <div class="details-center-icon">
+                                    <img src="logo.png" alt="J&A Logo">
+                                </div>
+                            </div>
+
+                            <!-- Where Card -->
+                            <div class="details-card">
+                                <div class="detail-icon-wrapper">
+                                    <div class="detail-icon">&#128205;</div>
+                                </div>
+                                <p class="detail-label">The Venue</p>
+                                <h3 class="detail-title">Where</h3>
+                                <div class="detail-content">
+                                    <span class="detail-venue">Goshen Events Place & Retreat House</span>
+                                    Purok 1, Brgy. Carasuchi<br>
+                                    Indang, Cavite
+                                </div>
+                                <a href="https://maps.google.com/?q=Goshen+Events+Place+Retreat+House+Indang+Cavite" target="_blank" class="map-link">
+                                    <span class="map-link-icon">&#128204;</span>
+                                    <span>Google Map</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <p class="details-message fade-up delay-3">We look forward to celebrating this beautiful moment with you</p>
+                <p class="details-ornament-bottom fade-up delay-4">&#10022; &#10022; &#10022;</p>
             </div>
         </section>
 
