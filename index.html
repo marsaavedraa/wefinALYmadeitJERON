@@ -689,248 +689,914 @@
             75% { transform: translateY(-40px) translateX(5px) scale(1.1); opacity: 0.4; }
         }
 
-        /* Story Section */
-        .story {
-            background: var(--cream-light);
+        /* ==================== MINI CAROUSEL TRANSITION ==================== */
+        .mini-carousel-section {
+            background: linear-gradient(180deg, var(--cream-light) 0%, var(--cream) 100%);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .story-content {
-            max-width: 600px;
+        .mini-carousel-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .mini-carousel-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .mini-carousel-header {
             text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .section-label {
-            font-size: 0.75rem;
+        .mini-carousel-label {
+            font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--dusty-blue);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mini-carousel-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--navy);
+            letter-spacing: 1px;
+        }
+
+        .mini-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+
+        .mini-carousel-track {
+            display: flex;
+            gap: 1rem;
+            animation: scrollCarousel 30s linear infinite;
+            width: max-content;
+        }
+
+        .mini-carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollCarousel {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .mini-carousel-item {
+            flex-shrink: 0;
+            width: 180px;
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 10px 30px rgba(74, 85, 104, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mini-carousel-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            z-index: 2;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .mini-carousel-item:hover {
+            transform: scale(1.08) translateY(-8px);
+            box-shadow: 0 20px 40px rgba(74, 85, 104, 0.25);
+            z-index: 10;
+        }
+
+        .mini-carousel-item:hover::before {
+            border-color: var(--gold);
+            border-width: 2px;
+        }
+
+        .mini-carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .mini-carousel-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Gradient fade on edges */
+        .mini-carousel-wrapper::before,
+        .mini-carousel-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .mini-carousel-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--cream-light), transparent);
+        }
+
+        .mini-carousel-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--cream), transparent);
+        }
+
+        /* Responsive adjustments for mini carousel */
+        @media (max-width: 768px) {
+            .mini-carousel-section {
+                padding: 2rem 0;
+            }
+
+            .mini-carousel-item {
+                width: 140px;
+                height: 190px;
+            }
+
+            .mini-carousel-title {
+                font-size: 1.5rem;
+            }
+
+            .mini-carousel-wrapper::before,
+            .mini-carousel-wrapper::after {
+                width: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mini-carousel-section {
+                padding: 1.5rem 0;
+            }
+
+            .mini-carousel-item {
+                width: 120px;
+                height: 160px;
+            }
+
+            .mini-carousel-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .mini-carousel-title {
+                font-size: 1.3rem;
+            }
+
+            .mini-carousel-wrapper::before,
+            .mini-carousel-wrapper::after {
+                width: 30px;
+            }
+        }
+
+        /* Story Section */
+        .story {
+            background: var(--cream-light);
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .story-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Carousel Side */
+        .story-carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: var(--navy);
+        }
+
+        .story-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transform: scale(1.05);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Carousel Overlay */
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(74, 85, 104, 0.2) 0%,
+                rgba(201, 162, 39, 0.1) 100%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Decorative frame on carousel */
+        .carousel-frame {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 1px solid rgba(201, 162, 39, 0.4);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .carousel-frame::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        /* Carousel Navigation Dots */
+        .carousel-dots {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(201, 162, 39, 0.5);
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .carousel-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+            border-color: var(--gold);
+        }
+
+        /* Carousel Arrow Buttons */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(250, 249, 247, 0.9);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            color: var(--navy);
+            font-size: 1.2rem;
+        }
+
+        .carousel-nav:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        /* Content Side */
+        .story-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 3rem;
+            background: var(--cream-light);
+            position: relative;
+        }
+
+        .story-content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(123, 147, 164, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .story-content {
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--navy);
+            margin-bottom: 2rem;
+            line-height: 1.2;
         }
 
         .story-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 300;
-            line-height: 2;
+            line-height: 2.2;
             color: var(--text-dark);
         }
 
         .story-text em {
             font-style: italic;
-            color: var(--navy);
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        .story-divider {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 2rem auto;
+        }
+
+        .story-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-light);
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-left: 2px solid var(--gold);
+            text-align: left;
+            background: rgba(201, 162, 39, 0.03);
         }
 
         .story-signature {
             font-family: 'Pinyon Script', cursive;
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--dusty-blue);
             margin-top: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .story-signature::before,
+        .story-signature::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+
+        .story-signature::before {
+            right: 100%;
+            margin-right: 1rem;
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
+
+        .story-signature::after {
+            left: 100%;
+            margin-left: 1rem;
+        }
+
+        /* Story Section Responsive */
+        @media (max-width: 1024px) {
+            .story-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 50vh auto;
+            }
+
+            .story-carousel-wrapper {
+                height: 50vh;
+            }
+
+            .story-content-wrapper {
+                padding: 3rem 2rem;
+            }
+
+            .carousel-frame {
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .story-container {
+                grid-template-rows: 45vh auto;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .carousel-prev {
+                left: 15px;
+            }
+
+            .carousel-next {
+                right: 15px;
+            }
+
+            .carousel-dots {
+                bottom: 25px;
+            }
+
+            .carousel-dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .story-container {
+                grid-template-rows: 40vh auto;
+            }
+
+            .story-content-wrapper {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .story-text {
+                font-size: 1.2rem;
+            }
+
+            .carousel-frame {
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .story-quote {
+                font-size: 1rem;
+                padding: 1rem;
+            }
         }
 
         /* Countdown Section */
         .countdown {
-            background: var(--cream);
-            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-light) 100%);
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
+                linear-gradient(315deg, rgba(123, 147, 164, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .countdown-wrapper {
+            position: relative;
+            z-index: 1;
+            text-align: center;
         }
 
         .countdown-label {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
+            font-size: 0.7rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            color: var(--navy);
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .countdown-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--cream-light);
             margin-bottom: 3rem;
         }
 
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
         .countdown-item {
             text-align: center;
-            min-width: 80px;
+            min-width: 100px;
+            padding: 2rem 1.5rem;
+            background: rgba(250, 249, 247, 0.08);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            pointer-events: none;
         }
 
         .countdown-number {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(3rem, 8vw, 4.5rem);
             font-weight: 300;
-            color: var(--text-dark);
+            color: var(--cream-light);
             line-height: 1;
         }
 
         .countdown-unit {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--text-light);
-            margin-top: 0.5rem;
+            color: var(--gold);
+            margin-top: 1rem;
         }
 
         .countdown-separator {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--dusty-blue);
-            align-self: flex-start;
-            padding-top: 0.5rem;
+            display: none;
         }
 
         /* Details Section */
         .details {
             background: var(--cream);
+            position: relative;
+        }
+
+        .details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .details-wrapper {
+            text-align: center;
+            max-width: 1000px;
+            width: 100%;
         }
 
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 4rem;
-            max-width: 900px;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .detail-card {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2.5rem;
+            background: var(--cream-light);
+            position: relative;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(74, 85, 104, 0.15);
+        }
+
+        .detail-card:hover::before {
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
         }
 
         .detail-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            opacity: 0.8;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dusty-blue) 100%);
+            border-radius: 50%;
+            color: white;
+            filter: drop-shadow(0 4px 15px rgba(74, 85, 104, 0.3));
         }
 
         .detail-title {
             font-family: 'Pinyon Script', cursive;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--navy);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .detail-info {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-dark);
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .detail-info strong {
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--navy);
         }
 
         .map-link {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.75rem 2rem;
-            border: 1px solid var(--dusty-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--gold);
             color: var(--navy);
             text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: all 0.3s ease;
+            z-index: -1;
         }
 
         .map-link:hover {
-            background: var(--dusty-blue);
             color: white;
+        }
+
+        .map-link:hover::before {
+            left: 0;
         }
 
         /* Dress Code Section */
         .dresscode {
-            background: var(--cream-light);
+            background: linear-gradient(180deg, var(--cream-light) 0%, var(--cream) 100%);
+            position: relative;
         }
 
         .dresscode-content {
-            max-width: 700px;
+            max-width: 900px;
             text-align: center;
         }
 
         .dresscode-title {
             font-family: 'Pinyon Script', cursive;
-            font-size: 3rem;
+            font-size: clamp(3rem, 7vw, 4rem);
             color: var(--navy);
             margin-bottom: 1rem;
         }
 
         .dresscode-intro {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-light);
             margin-bottom: 3rem;
             font-style: italic;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .dresscode-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             margin-bottom: 3rem;
         }
 
         .dresscode-item {
-            padding: 1.5rem;
-            background: var(--cream);
-            border-radius: 8px;
+            padding: 2rem 1.5rem;
+            background: white;
+            position: relative;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dresscode-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .dresscode-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(74, 85, 104, 0.12);
         }
 
         .dresscode-role {
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             font-weight: 400;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .dresscode-attire {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--text-light);
+            font-size: 1.15rem;
+            color: var(--navy);
+            font-weight: 500;
         }
 
         .color-palette {
-            margin-top: 2rem;
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: white;
+            border: 1px solid rgba(201, 162, 39, 0.2);
         }
 
         .color-palette-label {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
             color: var(--text-light);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .colors {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .color-swatch {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .color-swatch::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .color-swatch:hover {
-            transform: scale(1.1);
+            transform: scale(1.15) translateY(-5px);
+        }
+
+        .color-swatch:hover::after {
+            border-color: var(--gold);
         }
 
         .color-1 { background: var(--navy); }
         .color-2 { background: var(--dusty-blue); }
         .color-3 { background: var(--gold); }
-        .color-4 { background: var(--warm-beige); border: 1px solid var(--soft-gray); }
+        .color-4 { background: var(--warm-beige); }
 
         /* Reminders Section */
         .reminders {
             background: var(--cream);
+            position: relative;
+        }
+
+        .reminders::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .reminders-wrapper {
+            max-width: 1100px;
+            width: 100%;
         }
 
         .reminders-title {
             font-family: 'Pinyon Script', cursive;
-            font-size: 3rem;
+            font-size: clamp(3rem, 7vw, 4rem);
             color: var(--navy);
             margin-bottom: 3rem;
             text-align: center;
@@ -938,224 +1604,250 @@
 
         .reminders-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 1000px;
         }
 
         .reminder-card {
-            background: var(--cream-light);
-            padding: 2.5rem 2rem;
+            background: white;
+            padding: 3rem 2rem;
             text-align: center;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .reminder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy), var(--gold), var(--dusty-blue));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
 
         .reminder-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(74, 85, 104, 0.15);
+        }
+
+        .reminder-card:hover::before {
+            transform: scaleX(1);
         }
 
         .reminder-icon {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(123, 147, 164, 0.1) 100%);
+            border-radius: 50%;
         }
 
         .reminder-title {
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--navy);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
         }
 
         .reminder-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--text-light);
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .hashtag {
             display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1.5rem;
-            background: var(--cream);
-            color: var(--navy);
-            border-radius: 20px;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dusty-blue) 100%);
+            color: white;
+            border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 400;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(74, 85, 104, 0.3);
         }
 
         /* RSVP Section */
         .rsvp {
-            background: linear-gradient(135deg, var(--cream) 0%, var(--dusty-blue-light) 100%);
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
             min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(201, 162, 39, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(123, 147, 164, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .rsvp-content {
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rsvp-ornament {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
         }
 
         .rsvp-title {
             font-family: 'Pinyon Script', cursive;
-            font-size: 4rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            font-size: clamp(3.5rem, 10vw, 5rem);
+            color: var(--cream-light);
+            margin-bottom: 1rem;
         }
 
         .rsvp-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--text-light);
+            font-size: 1.3rem;
+            color: var(--dusty-blue-light);
             font-style: italic;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
-        .rsvp-form {
-            background: var(--cream);
-            padding: 3rem 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid var(--soft-gray);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            color: var(--text-dark);
-            background: var(--cream-light);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--dusty-blue);
-            box-shadow: 0 0 0 3px rgba(156, 173, 152, 0.2);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #aaa;
-        }
-
-        .attendance-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .attendance-option {
-            position: relative;
-        }
-
-        .attendance-option input {
-            position: absolute;
-            opacity: 0;
-        }
-
-        .attendance-label {
-            display: block;
-            padding: 1rem;
-            border: 1px solid var(--soft-gray);
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.85rem;
-            color: var(--text-light);
-            background: var(--cream-light);
-        }
-
-        .attendance-option input:checked + .attendance-label {
-            border-color: var(--dusty-blue);
-            background: var(--cream);
-            color: var(--navy);
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1.25rem 2rem;
-            background: var(--dusty-blue);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .btn-submit:hover {
-            background: var(--navy);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(156, 173, 152, 0.4);
-        }
-
-        .form-message {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 8px;
+        .rsvp-message {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
-            display: none;
+            color: rgba(250, 249, 247, 0.7);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .form-message.success {
-            background: rgba(156, 173, 152, 0.2);
-            color: var(--navy);
-            display: block;
+        .rsvp-divider {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 2rem auto;
         }
 
-        .form-message.error {
-            background: rgba(200, 100, 100, 0.1);
-            color: #a05252;
-            display: block;
+        .rsvp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem 4rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--navy-dark);
+            text-decoration: none;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 40px rgba(201, 162, 39, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .rsvp-button:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(201, 162, 39, 0.5);
+        }
+
+        .rsvp-button:hover::before {
+            left: 100%;
+        }
+
+        .rsvp-button-icon {
+            font-size: 1.2rem;
+        }
+
+        .rsvp-deadline {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(250, 249, 247, 0.5);
         }
 
         /* Footer */
         footer {
-            background: var(--cream);
-            padding: 3rem 2rem;
+            background: var(--navy-dark);
+            padding: 4rem 2rem;
             text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .footer-ornament {
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.6;
         }
 
         .footer-names {
             font-family: 'Pinyon Script', cursive;
-            font-size: 2rem;
-            color: var(--dusty-blue);
+            font-size: 2.5rem;
+            color: var(--cream-light);
         }
 
         .footer-date {
             font-size: 0.8rem;
-            letter-spacing: 3px;
-            color: var(--text-light);
-            margin-top: 0.5rem;
+            letter-spacing: 5px;
+            color: var(--dusty-blue-light);
+            margin-top: 0.75rem;
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(250, 249, 247, 0.5);
+            margin-top: 1.5rem;
         }
 
         /* Animations */
@@ -1186,23 +1878,24 @@
             }
 
             .dresscode-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .countdown-timer {
                 gap: 1rem;
             }
 
-            .countdown-separator {
-                display: none;
+            .countdown-item {
+                min-width: 80px;
+                padding: 1.5rem 1rem;
             }
 
-            .attendance-options {
+            .reminders-grid {
                 grid-template-columns: 1fr;
             }
 
-            .rsvp-form {
-                padding: 2rem 1.5rem;
+            .section-title {
+                font-size: 3rem;
             }
 
             .envelope-container {
@@ -1350,11 +2043,39 @@
             .hero-frame-corners::after { bottom: 8px; left: 8px; }
 
             .countdown-item {
-                min-width: 60px;
+                min-width: 70px;
+                padding: 1.25rem 0.75rem;
             }
 
             .countdown-number {
                 font-size: 2.5rem;
+            }
+
+            .dresscode-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .story-signature::before,
+            .story-signature::after {
+                width: 30px;
+            }
+
+            .rsvp-button {
+                padding: 1.25rem 2.5rem;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+
+            .detail-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .details-grid {
+                gap: 1.5rem;
             }
 
             .envelope-container {
@@ -1522,66 +2243,211 @@
             </div>
         </section>
 
+        <!-- Mini Carousel Transition -->
+        <section class="mini-carousel-section">
+            <div class="mini-carousel-header fade-up">
+                <p class="mini-carousel-label">Our Moments</p>
+                <h3 class="mini-carousel-title">Glimpses of Us</h3>
+            </div>
+            <div class="mini-carousel-wrapper">
+                <div class="mini-carousel-track">
+                    <!-- First set of images -->
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed1.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed2.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed3.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed4.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed5.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed6.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed7.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed8.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed9.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed10.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed1.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed2.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed3.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed4.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed5.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed6.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed7.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed8.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed9.jpg" alt="Jeron & Alyssa">
+                    </div>
+                    <div class="mini-carousel-item">
+                        <img src="carousel/wed10.jpg" alt="Jeron & Alyssa">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Story Section -->
         <section class="section story" id="story">
-            <div class="story-content">
-                <p class="section-label fade-up">Our Story</p>
-                <p class="story-text fade-up delay-1">
-                    After years of waiting and trusting in His timing,<br>
-                    we invite you to celebrate the <em>love</em><br>
-                    God has written for us.
-                </p>
-                <p class="story-signature fade-up delay-2">J & A</p>
+            <div class="story-container">
+                <!-- Carousel Side -->
+                <div class="story-carousel-wrapper">
+                    <div class="story-carousel" id="storyCarousel">
+                        <div class="carousel-slide active">
+                            <img src="carousel/wed1.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed2.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed3.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed4.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed5.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed6.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed7.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed8.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed9.jpg" alt="Jeron & Alyssa">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="carousel/wed10.jpg" alt="Jeron & Alyssa">
+                        </div>
+                    </div>
+                    <div class="carousel-overlay"></div>
+                    <div class="carousel-frame"></div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-nav carousel-prev" id="carouselPrev">&#10094;</button>
+                    <button class="carousel-nav carousel-next" id="carouselNext">&#10095;</button>
+
+                    <!-- Navigation Dots -->
+                    <div class="carousel-dots" id="carouselDots">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                        <span class="carousel-dot" data-slide="1"></span>
+                        <span class="carousel-dot" data-slide="2"></span>
+                        <span class="carousel-dot" data-slide="3"></span>
+                        <span class="carousel-dot" data-slide="4"></span>
+                        <span class="carousel-dot" data-slide="5"></span>
+                        <span class="carousel-dot" data-slide="6"></span>
+                        <span class="carousel-dot" data-slide="7"></span>
+                        <span class="carousel-dot" data-slide="8"></span>
+                        <span class="carousel-dot" data-slide="9"></span>
+                    </div>
+                </div>
+
+                <!-- Content Side -->
+                <div class="story-content-wrapper">
+                    <div class="story-content">
+                        <p class="section-label fade-up">Our Story</p>
+                        <h2 class="section-title fade-up delay-1">A Love Written by God</h2>
+                        <p class="story-text fade-up delay-2">
+                            After years of waiting and trusting in His timing,<br>
+                            we invite you to celebrate the <em>love</em><br>
+                            God has written for us.
+                        </p>
+                        <div class="story-divider fade-up delay-3"></div>
+                        <p class="story-quote fade-up delay-3">
+                            "Two are better than one, because they have a good return for their labor: If either of them falls down, one can help the other up."
+                            <br><strong>— Ecclesiastes 4:9-10</strong>
+                        </p>
+                        <p class="story-signature fade-up delay-4">J & A</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Countdown Section -->
         <section class="section countdown" id="countdown">
-            <p class="countdown-label fade-up">Counting Down To Forever</p>
-            <div class="countdown-timer fade-up delay-1">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-unit">Days</div>
-                </div>
-                <span class="countdown-separator">:</span>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-unit">Hours</div>
-                </div>
-                <span class="countdown-separator">:</span>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-unit">Minutes</div>
-                </div>
-                <span class="countdown-separator">:</span>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-unit">Seconds</div>
+            <div class="countdown-wrapper">
+                <p class="countdown-label fade-up">Save the Date</p>
+                <h2 class="countdown-title fade-up delay-1">Counting Down To Forever</h2>
+                <div class="countdown-timer fade-up delay-2">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-unit">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-unit">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-unit">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-unit">Seconds</div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Details Section -->
         <section class="section details" id="details">
-            <div class="details-grid">
-                <div class="detail-card fade-up">
-                    <div class="detail-icon">📅</div>
-                    <h3 class="detail-title">When</h3>
-                    <p class="detail-info">
-                        <strong>Saturday</strong><br>
-                        March 28, 2026<br>
-                        3:00 in the afternoon
-                    </p>
-                </div>
-                <div class="detail-card fade-up delay-1">
-                    <div class="detail-icon">📍</div>
-                    <h3 class="detail-title">Where</h3>
-                    <p class="detail-info">
-                        <strong>Goshen Events Place & Retreat House</strong><br>
-                        Purok 1, Brgy. Carasuchi<br>
-                        Indang, Cavite
-                    </p>
-                    <a href="https://maps.google.com/?q=Goshen+Events+Place+Retreat+House+Indang+Cavite" target="_blank" class="map-link">View Map</a>
+            <div class="details-wrapper">
+                <p class="section-label fade-up">Celebration Details</p>
+                <h2 class="section-title fade-up delay-1">When & Where</h2>
+                <div class="details-grid">
+                    <div class="detail-card fade-up delay-2">
+                        <div class="detail-icon">&#128197;</div>
+                        <h3 class="detail-title">When</h3>
+                        <p class="detail-info">
+                            <strong>Saturday</strong><br>
+                            March 28, 2026<br>
+                            3:00 in the afternoon
+                        </p>
+                    </div>
+                    <div class="detail-card fade-up delay-3">
+                        <div class="detail-icon">&#128205;</div>
+                        <h3 class="detail-title">Where</h3>
+                        <p class="detail-info">
+                            <strong>Goshen Events Place & Retreat House</strong><br>
+                            Purok 1, Brgy. Carasuchi<br>
+                            Indang, Cavite
+                        </p>
+                        <a href="https://maps.google.com/?q=Goshen+Events+Place+Retreat+House+Indang+Cavite" target="_blank" class="map-link">View Map</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1626,25 +2492,27 @@
 
         <!-- Reminders Section -->
         <section class="section reminders" id="reminders">
-            <h2 class="reminders-title fade-up">Kind Reminders</h2>
-            <div class="reminders-grid">
-                <div class="reminder-card fade-up delay-1">
-                    <div class="reminder-icon">🎁</div>
-                    <h3 class="reminder-title">Gift Guide</h3>
-                    <p class="reminder-text">Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a monetary contribution would be sincerely appreciated as we start our new life together.</p>
-                </div>
+            <div class="reminders-wrapper">
+                <h2 class="reminders-title fade-up">Kind Reminders</h2>
+                <div class="reminders-grid">
+                    <div class="reminder-card fade-up delay-1">
+                        <div class="reminder-icon">&#127873;</div>
+                        <h3 class="reminder-title">Gift Guide</h3>
+                        <p class="reminder-text">Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a monetary contribution would be sincerely appreciated as we start our new life together.</p>
+                    </div>
 
-                <div class="reminder-card fade-up delay-2">
-                    <div class="reminder-icon">📋</div>
-                    <h3 class="reminder-title">Guest Guidelines</h3>
-                    <p class="reminder-text"><strong>Adults Only</strong> — with the exception of immediate family.<br><br><strong>No Plus Ones</strong> — due to venue capacity, we can only accommodate guests named on the invitation.</p>
-                </div>
+                    <div class="reminder-card fade-up delay-2">
+                        <div class="reminder-icon">&#128203;</div>
+                        <h3 class="reminder-title">Guest Guidelines</h3>
+                        <p class="reminder-text"><strong>Adults Only</strong> — with the exception of immediate family.<br><br><strong>No Plus Ones</strong> — due to venue capacity, we can only accommodate guests named on the invitation.</p>
+                    </div>
 
-                <div class="reminder-card fade-up delay-3">
-                    <div class="reminder-icon">📸</div>
-                    <h3 class="reminder-title">Snap & Share</h3>
-                    <p class="reminder-text">Help us capture the magic! Please use our official hashtag when posting photos.</p>
-                    <span class="hashtag">#wefinALYmadeitJERON</span>
+                    <div class="reminder-card fade-up delay-3">
+                        <div class="reminder-icon">&#128248;</div>
+                        <h3 class="reminder-title">Snap & Share</h3>
+                        <p class="reminder-text">Help us capture the magic! Please use our official hashtag when posting photos.</p>
+                        <span class="hashtag">#wefinALYmadeitJERON</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1652,67 +2520,28 @@
         <!-- RSVP Section -->
         <section class="section rsvp" id="rsvp">
             <div class="rsvp-content">
-                <h2 class="rsvp-title fade-up">RSVP</h2>
-                <p class="rsvp-subtitle fade-up delay-1">Kindly let us know if you can celebrate with us</p>
-
-                <form class="rsvp-form fade-up delay-2" id="rsvpForm">
-                    <div class="form-group">
-                        <label for="guestName">Full Name</label>
-                        <input type="text" id="guestName" name="guestName" placeholder="Your name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone (Optional)</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Your phone number">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Will you be attending?</label>
-                        <div class="attendance-options">
-                            <div class="attendance-option">
-                                <input type="radio" id="attending" name="attendance" value="yes" required>
-                                <label for="attending" class="attendance-label">Joyfully Accept</label>
-                            </div>
-                            <div class="attendance-option">
-                                <input type="radio" id="notAttending" name="attendance" value="no">
-                                <label for="notAttending" class="attendance-label">Regretfully Decline</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dietary">Dietary Restrictions</label>
-                        <select id="dietary" name="dietary">
-                            <option value="none">None</option>
-                            <option value="vegetarian">Vegetarian</option>
-                            <option value="vegan">Vegan</option>
-                            <option value="halal">Halal</option>
-                            <option value="gluten-free">Gluten-Free</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message for the Couple</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Share your wishes..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Send RSVP</button>
-
-                    <div class="form-message" id="formMessage"></div>
-                </form>
+                <p class="rsvp-ornament fade-up">&#10022; &#10022; &#10022;</p>
+                <h2 class="rsvp-title fade-up delay-1">RSVP</h2>
+                <p class="rsvp-subtitle fade-up delay-2">Will you be joining us?</p>
+                <div class="rsvp-divider fade-up delay-2"></div>
+                <p class="rsvp-message fade-up delay-3">
+                    We would be honored to have you celebrate this special day with us.
+                    Please let us know if you can attend by filling out our RSVP form.
+                </p>
+                <a href="https://forms.google.com" target="_blank" class="rsvp-button fade-up delay-4">
+                    <span class="rsvp-button-icon">&#9993;</span>
+                    Respond Now
+                </a>
+                <p class="rsvp-deadline fade-up delay-4">Please respond by March 1, 2026</p>
             </div>
         </section>
 
         <!-- Footer -->
         <footer>
+            <p class="footer-ornament">&#10022; &#10022; &#10022;</p>
             <p class="footer-names">Jeron & Alyssa</p>
             <p class="footer-date">03 . 28 . 26</p>
+            <p class="footer-tagline">A Love Written by God</p>
         </footer>
     </div>
 
@@ -1814,30 +2643,124 @@
             });
         });
 
-        // ==================== RSVP FORM ====================
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // ==================== STORY CAROUSEL ====================
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        let currentSlide = 0;
+        let carouselInterval;
 
-            const formMessage = document.getElementById('formMessage');
-            const guestName = document.getElementById('guestName').value;
-            const email = document.getElementById('email').value;
-            const attendance = document.querySelector('input[name="attendance"]:checked');
-
-            if (!guestName || !email || !attendance) {
-                formMessage.className = 'form-message error';
-                formMessage.textContent = 'Please fill in all required fields.';
-                return;
-            }
-
-            formMessage.className = 'form-message success';
-            if (attendance.value === 'yes') {
-                formMessage.textContent = `Thank you, ${guestName}! We're so excited to celebrate with you.`;
+        function showSlide(index) {
+            // Handle wrap-around
+            if (index >= carouselSlides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = carouselSlides.length - 1;
             } else {
-                formMessage.textContent = `Thank you for letting us know, ${guestName}. We'll miss you!`;
+                currentSlide = index;
             }
 
-            setTimeout(() => this.reset(), 3000);
+            // Update slides
+            carouselSlides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update dots
+            carouselDots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === currentSlide) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Start auto-play
+        function startCarousel() {
+            carouselInterval = setInterval(nextSlide, 4000);
+        }
+
+        // Stop auto-play
+        function stopCarousel() {
+            clearInterval(carouselInterval);
+        }
+
+        // Event listeners
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                stopCarousel();
+                prevSlide();
+                startCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                stopCarousel();
+                nextSlide();
+                startCarousel();
+            });
+        }
+
+        // Dot navigation
+        carouselDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                stopCarousel();
+                showSlide(parseInt(dot.dataset.slide));
+                startCarousel();
+            });
         });
+
+        // Pause on hover
+        const carouselWrapper = document.querySelector('.story-carousel-wrapper');
+        if (carouselWrapper) {
+            carouselWrapper.addEventListener('mouseenter', stopCarousel);
+            carouselWrapper.addEventListener('mouseleave', startCarousel);
+        }
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const carousel = document.getElementById('storyCarousel');
+        if (carousel) {
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                stopCarousel();
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                startCarousel();
+            }
+        }
+
+        // Initialize carousel
+        startCarousel();
+
     </script>
 </body>
 </html>
