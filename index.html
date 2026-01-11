@@ -442,66 +442,182 @@
 
         /* Hero Section */
         .hero {
-            background: var(--cream);
+            background: url('wed1.jpg') right center / cover no-repeat;
             text-align: center;
             position: relative;
             overflow: hidden;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 5%;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, var(--cream) 0%, transparent 70%);
-            opacity: 0.3;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(30px, 30px) rotate(5deg); }
+            top: 0;
+            left: 0;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(250, 249, 247, 0.98) 0%,
+                rgba(250, 249, 247, 0.95) 50%,
+                rgba(250, 249, 247, 0.6) 80%,
+                rgba(250, 249, 247, 0) 100%
+            );
+            z-index: 0;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
+            background: linear-gradient(135deg, rgba(250, 249, 247, 0.95) 0%, rgba(245, 243, 239, 0.95) 100%);
+            padding: 3.5rem 4rem;
+            border-radius: 0;
+            box-shadow: 0 25px 80px rgba(74, 85, 104, 0.15),
+                        0 10px 30px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            max-width: 480px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        /* Decorative frame corners */
+        .hero-content::before,
+        .hero-content::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-color: var(--gold);
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .hero-content::before {
+            top: 15px;
+            left: 15px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .hero-content::after {
+            bottom: 15px;
+            right: 15px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+
+        /* Inner decorative corners */
+        .hero-frame-corners {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .hero-frame-corners::before,
+        .hero-frame-corners::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-color: var(--gold);
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .hero-frame-corners::before {
+            top: 15px;
+            right: 15px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .hero-frame-corners::after {
+            bottom: 15px;
+            left: 15px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .hero-ornament {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-ornament-bottom {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-top: 1.5rem;
+            opacity: 0.9;
         }
 
         .hero-date-top {
-            font-size: 0.85rem;
-            letter-spacing: 4px;
-            color: var(--text-light);
-            margin-bottom: 2rem;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            color: var(--dusty-blue);
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
 
         .hero-names {
             font-family: 'Pinyon Script', cursive;
-            font-size: clamp(3.5rem, 12vw, 8rem);
+            font-size: clamp(3.5rem, 10vw, 5.5rem);
             color: var(--navy);
-            line-height: 1.1;
-            margin-bottom: 1rem;
+            line-height: 1.15;
+            margin-bottom: 0;
+            text-shadow: 2px 2px 4px rgba(201, 162, 39, 0.1);
         }
 
         .hero-ampersand {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: clamp(2rem, 6vw, 4rem);
-            color: var(--dusty-blue);
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--gold);
             display: block;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
+            text-shadow: 1px 1px 2px rgba(201, 162, 39, 0.2);
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 1.5rem auto;
         }
 
         .hero-tagline {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+
+        .hero-venue {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             color: var(--text-light);
-            margin-top: 2rem;
-            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
         }
 
         .scroll-indicator {
@@ -513,23 +629,64 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
-            color: var(--dusty-blue);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
+            color: var(--navy);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             animation: bounce 2s ease-in-out infinite;
+            z-index: 2;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+            background: rgba(250, 249, 247, 0.8);
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
         }
 
         .scroll-indicator::after {
             content: '';
             width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--dusty-blue), transparent);
+            height: 30px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Floating particles effect */
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatParticle 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 12s; }
+        .particle:nth-child(2) { left: 20%; top: 60%; animation-delay: 2s; animation-duration: 14s; }
+        .particle:nth-child(3) { left: 35%; top: 30%; animation-delay: 4s; animation-duration: 16s; }
+        .particle:nth-child(4) { left: 5%; top: 80%; animation-delay: 1s; animation-duration: 13s; }
+        .particle:nth-child(5) { left: 40%; top: 70%; animation-delay: 3s; animation-duration: 15s; }
+        .particle:nth-child(6) { left: 25%; top: 10%; animation-delay: 5s; animation-duration: 11s; }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+            25% { transform: translateY(-30px) translateX(10px) scale(1.2); opacity: 0.5; }
+            50% { transform: translateY(-20px) translateX(-15px) scale(0.8); opacity: 0.2; }
+            75% { transform: translateY(-40px) translateX(5px) scale(1.1); opacity: 0.4; }
         }
 
         /* Story Section */
@@ -1094,10 +1251,103 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .hero-names {
-                font-size: 3rem;
+        @media (max-width: 768px) {
+            .hero {
+                align-items: center;
+                padding-left: 3%;
+                padding-right: 3%;
             }
+
+            .hero-content {
+                padding: 2.5rem 2rem;
+                max-width: 90%;
+            }
+
+            .hero-content::before,
+            .hero-content::after,
+            .hero-frame-corners::before,
+            .hero-frame-corners::after {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero-content::before { top: 10px; left: 10px; }
+            .hero-content::after { bottom: 10px; right: 10px; }
+            .hero-frame-corners::before { top: 10px; right: 10px; }
+            .hero-frame-corners::after { bottom: 10px; left: 10px; }
+
+            .hero::before {
+                width: 100%;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(250, 249, 247, 0.95) 0%,
+                    rgba(250, 249, 247, 0.85) 50%,
+                    rgba(250, 249, 247, 0.7) 100%
+                );
+            }
+
+            .hero-particles {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                align-items: center;
+                padding-left: 2%;
+                padding-right: 2%;
+            }
+
+            .hero-content {
+                padding: 2rem 1.5rem;
+                margin: 0 0.5rem;
+                max-width: 100%;
+            }
+
+            .hero::before {
+                width: 100%;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(250, 249, 247, 0.92) 0%,
+                    rgba(250, 249, 247, 0.85) 50%,
+                    rgba(250, 249, 247, 0.7) 100%
+                );
+            }
+
+            .hero-names {
+                font-size: 2.8rem;
+            }
+
+            .hero-ampersand {
+                font-size: 2rem;
+            }
+
+            .hero-ornament,
+            .hero-ornament-bottom {
+                font-size: 1.2rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .hero-venue {
+                font-size: 0.6rem;
+            }
+
+            .hero-content::before,
+            .hero-content::after,
+            .hero-frame-corners::before,
+            .hero-frame-corners::after {
+                width: 30px;
+                height: 30px;
+            }
+
+            .hero-content::before { top: 8px; left: 8px; }
+            .hero-content::after { bottom: 8px; right: 8px; }
+            .hero-frame-corners::before { top: 8px; right: 8px; }
+            .hero-frame-corners::after { bottom: 8px; left: 8px; }
 
             .countdown-item {
                 min-width: 60px;
@@ -1242,16 +1492,30 @@
 
         <!-- Hero Section -->
         <section class="section hero" id="hero">
-            <span class="leaf-decoration leaf-1">🌿</span>
-            <span class="leaf-decoration leaf-2">🍃</span>
+            <!-- Floating particles -->
+            <div class="hero-particles">
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+            </div>
+
             <div class="hero-content">
+                <div class="hero-frame-corners"></div>
+                <p class="hero-ornament fade-up">&#10022; &#10022; &#10022;</p>
+                <!-- <p class="hero-subtitle fade-up">Together with their families</p> -->
                 <p class="hero-date-top fade-up">March 28, 2026</p>
                 <h1 class="hero-names fade-up delay-1">
                     Jeron
                     <span class="hero-ampersand">&</span>
                     Alyssa
                 </h1>
+                <div class="hero-divider fade-up delay-2"></div>
                 <p class="hero-tagline fade-up delay-2">A Love Written by God</p>
+                <p class="hero-ornament-bottom fade-up delay-3">&#10022; &#10022; &#10022;</p>
+                <p class="hero-venue fade-up delay-3">Goshen Events Place, Indang, Cavite</p>
             </div>
             <div class="scroll-indicator">
                 scroll
