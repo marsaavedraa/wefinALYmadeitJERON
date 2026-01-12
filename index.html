@@ -2200,58 +2200,228 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 30% 30%, rgba(201, 162, 39, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(123, 147, 164, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 20%, rgba(201, 162, 39, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(123, 147, 164, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(201, 162, 39, 0.05) 0%, transparent 60%);
             pointer-events: none;
         }
 
-        .rsvp-content {
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
+        /* Decorative border lines */
+        .rsvp::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            bottom: 40px;
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            pointer-events: none;
+        }
+
+        .rsvp-wrapper {
             position: relative;
             z-index: 1;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .rsvp-content {
+            text-align: center;
+            position: relative;
+        }
+
+        /* Main RSVP card */
+        .rsvp-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            padding: 4rem 3rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .rsvp-card::before,
+        .rsvp-card::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-color: var(--gold);
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .rsvp-card::before {
+            top: 15px;
+            left: 15px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .rsvp-card::after {
+            bottom: 15px;
+            right: 15px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .rsvp-corner-tr,
+        .rsvp-corner-bl {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-color: var(--gold);
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .rsvp-corner-tr {
+            top: 15px;
+            right: 15px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .rsvp-corner-bl {
+            bottom: 15px;
+            left: 15px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
         }
 
         .rsvp-ornament {
             color: var(--gold);
             font-size: 1.5rem;
             letter-spacing: 0.5rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .rsvp-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .rsvp-icon::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            border-radius: 50%;
+        }
+
+        .rsvp-icon::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border: 1px dashed rgba(201, 162, 39, 0.15);
+            border-radius: 50%;
+            animation: rotateBorder 25s linear infinite;
+        }
+
+        .rsvp-icon img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
         }
 
         .rsvp-title {
-            font-family: 'Pinyon Script', cursive;
-            font-size: clamp(3.5rem, 10vw, 5rem);
-            color: var(--cream-light);
-            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 20px rgba(201, 162, 39, 0.4);
+            position: relative;
+            display: inline-block;
+        }
+
+        .rsvp-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
         }
 
         .rsvp-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--dusty-blue-light);
             font-style: italic;
-            margin-bottom: 2rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .rsvp-divider {
+            width: 150px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .rsvp-divider::before {
+            content: '~';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+            font-size: 1.5rem;
+            background: var(--navy);
+            padding: 0 1rem;
         }
 
         .rsvp-message {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: rgba(250, 249, 247, 0.7);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 450px;
+            font-size: 1.25rem;
+            color: rgba(250, 249, 247, 0.8);
+            margin-bottom: 2.5rem;
+            line-height: 2;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .rsvp-divider {
-            width: 100px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--gold), transparent);
-            margin: 2rem auto;
+        .rsvp-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .rsvp-detail-item {
+            text-align: center;
+        }
+
+        .rsvp-detail-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rsvp-detail-label {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+
+        .rsvp-detail-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--cream-light);
         }
 
         .rsvp-button {
@@ -2259,7 +2429,8 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            padding: 1.5rem 4rem;
+            padding: 1.5rem 3.5rem;
+            min-height: 80px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
             color: var(--navy-dark);
             text-decoration: none;
@@ -2283,13 +2454,21 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .rsvp-button::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
         }
 
         .rsvp-button:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(201, 162, 39, 0.5);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(201, 162, 39, 0.5);
         }
 
         .rsvp-button:hover::before {
@@ -2297,15 +2476,184 @@
         }
 
         .rsvp-button-icon {
-            font-size: 1.2rem;
+            font-size: 1.8rem;
+        }
+
+        .rsvp-button-text {
+            position: relative;
+        }
+
+        .rsvp-action-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
         .rsvp-deadline {
-            margin-top: 2.5rem;
-            font-size: 0.75rem;
+            padding: 1.2rem 2.5rem;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            background: rgba(201, 162, 39, 0.05);
+            text-align: center;
+            min-width: 200px;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rsvp-deadline-label {
+            font-size: 0.65rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: rgba(250, 249, 247, 0.5);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .rsvp-deadline-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .rsvp-note {
+            margin-top: 2.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: rgba(250, 249, 247, 0.6);
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(201, 162, 39, 0.15);
+        }
+
+        .rsvp-ornament-bottom {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin-top: 2.5rem;
+            opacity: 0.8;
+        }
+
+        /* Floating decorations for RSVP */
+        .rsvp-float-decor {
+            position: absolute;
+            color: var(--gold);
+            opacity: 0.08;
+            font-size: 4rem;
+            pointer-events: none;
+        }
+
+        .rsvp-float-1 {
+            top: 15%;
+            left: 8%;
+            animation: floatDecor 10s ease-in-out infinite;
+        }
+
+        .rsvp-float-2 {
+            bottom: 15%;
+            right: 8%;
+            animation: floatDecor 12s ease-in-out infinite reverse;
+        }
+
+        .rsvp-float-3 {
+            top: 50%;
+            left: 5%;
+            font-size: 2.5rem;
+            animation: floatDecor 8s ease-in-out infinite 2s;
+        }
+
+        .rsvp-float-4 {
+            top: 30%;
+            right: 5%;
+            font-size: 2.5rem;
+            animation: floatDecor 9s ease-in-out infinite 1s reverse;
+        }
+
+        /* RSVP Responsive */
+        @media (max-width: 768px) {
+            .rsvp::after {
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+            }
+
+            .rsvp-card {
+                padding: 3rem 2rem;
+                margin: 0 1rem;
+            }
+
+            .rsvp-card::before,
+            .rsvp-card::after,
+            .rsvp-corner-tr,
+            .rsvp-corner-bl {
+                width: 40px;
+                height: 40px;
+            }
+
+            .rsvp-card::before { top: 10px; left: 10px; }
+            .rsvp-card::after { bottom: 10px; right: 10px; }
+            .rsvp-corner-tr { top: 10px; right: 10px; }
+            .rsvp-corner-bl { bottom: 10px; left: 10px; }
+
+            .rsvp-details {
+                gap: 2rem;
+            }
+
+            .rsvp-float-decor {
+                display: none;
+            }
+
+            .rsvp-icon {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rsvp-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .rsvp-title {
+                font-size: 3.5rem;
+            }
+
+            .rsvp-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .rsvp-message {
+                font-size: 1.1rem;
+            }
+
+            .rsvp-button {
+                padding: 1.25rem 2.5rem;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+
+            .rsvp-details {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .rsvp-card::before,
+            .rsvp-card::after,
+            .rsvp-corner-tr,
+            .rsvp-corner-bl {
+                width: 30px;
+                height: 30px;
+            }
         }
 
         /* Footer */
@@ -3127,20 +3475,73 @@
 
         <!-- RSVP Section -->
         <section class="section rsvp" id="rsvp">
-            <div class="rsvp-content">
-                <p class="rsvp-ornament fade-up">&#10022; &#10022; &#10022;</p>
-                <h2 class="rsvp-title fade-up delay-1">RSVP</h2>
-                <p class="rsvp-subtitle fade-up delay-2">Will you be joining us?</p>
-                <div class="rsvp-divider fade-up delay-2"></div>
-                <p class="rsvp-message fade-up delay-3">
-                    We would be honored to have you celebrate this special day with us.
-                    Please let us know if you can attend by filling out our RSVP form.
-                </p>
-                <a href="https://forms.google.com" target="_blank" class="rsvp-button fade-up delay-4">
-                    <span class="rsvp-button-icon">&#9993;</span>
-                    Respond Now
-                </a>
-                <p class="rsvp-deadline fade-up delay-4">Please respond by March 1, 2026</p>
+            <!-- Floating decorations -->
+            <span class="rsvp-float-decor rsvp-float-1">&#10022;</span>
+            <span class="rsvp-float-decor rsvp-float-2">&#10022;</span>
+            <span class="rsvp-float-decor rsvp-float-3">&#10022;</span>
+            <span class="rsvp-float-decor rsvp-float-4">&#10022;</span>
+
+            <div class="rsvp-wrapper">
+                <div class="rsvp-content">
+                    <!-- Main RSVP Card -->
+                    <div class="rsvp-card fade-up">
+                        <!-- Corner decorations -->
+                        <div class="rsvp-corner-tr"></div>
+                        <div class="rsvp-corner-bl"></div>
+
+                        <p class="rsvp-ornament">&#10022; &#10022; &#10022;</p>
+
+                        <!-- Logo icon -->
+                        <div class="rsvp-icon">
+                            <img src="logo.png" alt="J&A Logo">
+                        </div>
+
+                        <h2 class="rsvp-title">RSVP</h2>
+                        <p class="rsvp-subtitle">Will you be joining us?</p>
+
+                        <div class="rsvp-divider"></div>
+
+                        <p class="rsvp-message">
+                            We would be honored to have you celebrate this special day with us.<br>
+                            Your presence would make our wedding complete.
+                        </p>
+
+                        <!-- Quick details -->
+                        <div class="rsvp-details">
+                            <div class="rsvp-detail-item">
+                                <div class="rsvp-detail-icon">&#128197;</div>
+                                <p class="rsvp-detail-label">Date</p>
+                                <p class="rsvp-detail-value">March 28, 2026</p>
+                            </div>
+                            <div class="rsvp-detail-item">
+                                <div class="rsvp-detail-icon">&#128336;</div>
+                                <p class="rsvp-detail-label">Time</p>
+                                <p class="rsvp-detail-value">3:00 PM</p>
+                            </div>
+                            <div class="rsvp-detail-item">
+                                <div class="rsvp-detail-icon">&#128205;</div>
+                                <p class="rsvp-detail-label">Venue</p>
+                                <p class="rsvp-detail-value">Goshen Events Place</p>
+                            </div>
+                        </div>
+
+                        <div class="rsvp-action-wrapper">
+                            <a href="https://forms.google.com" target="_blank" class="rsvp-button">
+                                <span class="rsvp-button-icon">&#9993;</span>
+                                <span class="rsvp-button-text">Respond Now</span>
+                            </a>
+
+                            <div class="rsvp-deadline">
+                                <span class="rsvp-deadline-label">Kindly respond by</span>
+                                <span class="rsvp-deadline-date">March 1, 2026</span>
+                            </div>
+                        </div>
+
+                        <p class="rsvp-note">"And now these three remain: faith, hope and love. But the greatest of these is love." — 1 Corinthians 13:13</p>
+
+                        <p class="rsvp-ornament-bottom">&#10022; &#10022; &#10022;</p>
+                    </div>
+                </div>
             </div>
         </section>
 
