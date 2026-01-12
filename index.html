@@ -3038,6 +3038,786 @@
             font-size: 3rem;
             transform: rotate(45deg);
         }
+
+        /* ==================== COMPREHENSIVE MOBILE RESPONSIVE ==================== */
+
+        /* Tablet - 768px and below */
+        @media (max-width: 768px) {
+            /* Envelope Landing Page */
+            .envelope-container {
+                width: 320px;
+                height: 420px;
+            }
+
+            .envelope,
+            .envelope-front {
+                height: 220px;
+            }
+
+            .envelope-wrapper {
+                height: 220px;
+            }
+
+            .envelope-flap {
+                top: 195px;
+                width: 320px;
+                border-left: 160px solid transparent;
+                border-right: 160px solid transparent;
+                border-top: 110px solid var(--envelope-color);
+            }
+
+            .envelope-flap::before {
+                border-left: 160px solid transparent;
+                border-right: 160px solid transparent;
+                border-top: 110px solid var(--envelope-shadow);
+            }
+
+            .wax-seal {
+                top: 268px;
+                width: 75px;
+                height: 75px;
+            }
+
+            .wax-seal-inner {
+                width: 55px;
+                height: 55px;
+            }
+
+            .seal-letter {
+                font-size: 1.6rem;
+            }
+
+            .envelope-front::before {
+                border-left: 160px solid transparent;
+                border-right: 160px solid transparent;
+                border-bottom: 110px solid var(--envelope-inner);
+            }
+
+            .invitation-card {
+                top: 195px;
+                left: 15px;
+                width: 290px;
+                height: 175px;
+                padding: 1.25rem;
+            }
+
+            .card-names {
+                font-size: 1.8rem;
+            }
+
+            .card-date {
+                font-size: 0.9rem;
+            }
+
+            .envelope-container.open .invitation-card {
+                transform: translateY(-190px);
+            }
+
+            .enter-btn {
+                padding: 0.9rem 2.5rem;
+                font-size: 0.7rem;
+            }
+
+            .envelope-intro p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .envelope-decoration {
+                font-size: 2rem;
+            }
+
+            /* Navigation Dots */
+            .nav-dots {
+                right: 0.75rem;
+                gap: 0.6rem;
+            }
+
+            .nav-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            /* Section General */
+            .section {
+                padding: 4rem 1.5rem;
+                min-height: auto;
+            }
+
+            .section-label {
+                font-size: 0.6rem;
+                letter-spacing: 4px;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content {
+                padding: 2.5rem 2rem;
+                max-width: 95%;
+            }
+
+            .hero-names {
+                font-size: 3.5rem;
+            }
+
+            .hero-ampersand {
+                font-size: 2rem;
+                margin: 0.5rem 0;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-date {
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+
+            .hero-venue {
+                font-size: 0.65rem;
+            }
+
+            .scroll-indicator {
+                bottom: 1.5rem;
+            }
+
+            /* Countdown Section */
+            .countdown {
+                min-height: auto;
+                padding: 4rem 1.5rem;
+            }
+
+            .countdown-title {
+                font-size: 2.5rem;
+            }
+
+            .countdown-subtitle {
+                font-size: 1rem;
+            }
+
+            .countdown-date-display {
+                gap: 1rem;
+            }
+
+            .countdown-date-number {
+                font-size: 2.5rem;
+            }
+
+            .countdown-date-separator {
+                font-size: 2rem;
+            }
+
+            .countdown-timer {
+                gap: 0.75rem;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 1.25rem 1rem;
+            }
+
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+
+            .countdown-unit {
+                font-size: 0.6rem;
+                letter-spacing: 2px;
+            }
+
+            .countdown-separator {
+                display: none;
+            }
+
+            .countdown-message {
+                font-size: 0.95rem;
+                padding: 0 1rem;
+            }
+
+            /* Dress Code Section */
+            .dresscode-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .dresscode-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .dresscode-title {
+                font-size: 2.8rem;
+            }
+
+            .color-swatch {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Reminders Section */
+            .reminders-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .reminder-card {
+                padding: 2rem 1.5rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-names {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Mobile - 480px and below */
+        @media (max-width: 480px) {
+            /* Envelope Landing Page */
+            .envelope-container {
+                width: 280px;
+                height: 370px;
+            }
+
+            .envelope,
+            .envelope-front {
+                height: 195px;
+            }
+
+            .envelope-wrapper {
+                height: 195px;
+            }
+
+            .envelope-flap {
+                top: 168px;
+                width: 280px;
+                border-left: 140px solid transparent;
+                border-right: 140px solid transparent;
+                border-top: 95px solid var(--envelope-color);
+            }
+
+            .envelope-flap::before {
+                border-left: 140px solid transparent;
+                border-right: 140px solid transparent;
+                border-top: 95px solid var(--envelope-shadow);
+            }
+
+            .wax-seal {
+                top: 233px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .wax-seal-inner {
+                width: 48px;
+                height: 48px;
+            }
+
+            .seal-letter {
+                font-size: 1.4rem;
+            }
+
+            .envelope-front::before {
+                border-left: 140px solid transparent;
+                border-right: 140px solid transparent;
+                border-bottom: 95px solid var(--envelope-inner);
+            }
+
+            .invitation-card {
+                top: 168px;
+                left: 12px;
+                width: 256px;
+                height: 155px;
+                padding: 1rem;
+            }
+
+            .card-label {
+                font-size: 0.5rem;
+            }
+
+            .card-names {
+                font-size: 1.5rem;
+            }
+
+            .card-date {
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .card-venue {
+                font-size: 0.55rem;
+            }
+
+            .envelope-container.open .invitation-card {
+                transform: translateY(-165px);
+            }
+
+            .enter-btn {
+                padding: 0.8rem 2rem;
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+
+            .envelope-intro {
+                margin-bottom: 1.5rem;
+            }
+
+            .envelope-intro p {
+                font-size: 0.9rem;
+            }
+
+            .envelope-decoration {
+                font-size: 1.5rem;
+            }
+
+            .decoration-1 { top: 8%; left: 8%; }
+            .decoration-2 { top: 12%; right: 8%; }
+            .decoration-3 { bottom: 12%; left: 12%; }
+            .decoration-4 { bottom: 8%; right: 10%; }
+
+            /* Navigation Dots - hide on very small screens */
+            .nav-dots {
+                display: none;
+            }
+
+            /* Section General */
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-label {
+                font-size: 0.55rem;
+                letter-spacing: 3px;
+                padding: 0.4rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                padding: 2rem 1.5rem;
+                max-width: 100%;
+                margin: 0 0.5rem;
+            }
+
+            .hero-ornament,
+            .hero-ornament-bottom {
+                font-size: 1rem;
+                letter-spacing: 0.2rem;
+            }
+
+            .hero-names {
+                font-size: 2.5rem;
+            }
+
+            .hero-ampersand {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .hero-date {
+                font-size: 0.75rem;
+            }
+
+            .hero-venue {
+                font-size: 0.55rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-content::before,
+            .hero-content::after,
+            .hero-frame-corners::before,
+            .hero-frame-corners::after {
+                width: 25px;
+                height: 25px;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            /* Mini Carousel */
+            .mini-carousel-section {
+                padding: 3rem 1rem;
+            }
+
+            .mini-carousel-title {
+                font-size: 1.2rem;
+            }
+
+            .mini-carousel-item {
+                width: 100px;
+                height: 140px;
+            }
+
+            /* Story Section */
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .carousel-container {
+                height: 350px;
+                max-width: 100%;
+            }
+
+            .carousel-slide {
+                padding: 0 0.5rem;
+            }
+
+            .carousel-slide img {
+                border-radius: 5px;
+            }
+
+            .story-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .story-text {
+                font-size: 1rem;
+            }
+
+            .story-quote {
+                font-size: 0.9rem;
+                padding: 0 0.5rem;
+            }
+
+            .story-signature {
+                font-size: 2rem;
+            }
+
+            /* Countdown Section */
+            .countdown {
+                padding: 3rem 1rem;
+            }
+
+            .countdown-wrapper {
+                padding: 0 0.5rem;
+            }
+
+            .countdown-title {
+                font-size: 2rem;
+            }
+
+            .countdown-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .countdown-date-display {
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .countdown-date-number {
+                font-size: 2rem;
+            }
+
+            .countdown-date-label {
+                font-size: 0.55rem;
+            }
+
+            .countdown-date-separator {
+                font-size: 1.5rem;
+            }
+
+            .countdown-divider {
+                margin: 0 auto 2rem;
+            }
+
+            .countdown-item {
+                min-width: 60px;
+                padding: 1rem 0.75rem;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .countdown-unit {
+                font-size: 0.5rem;
+                margin-top: 0.5rem;
+            }
+
+            .countdown-message {
+                font-size: 0.85rem;
+                margin-top: 2rem;
+            }
+
+            .countdown-ornament,
+            .countdown-ornament-bottom {
+                font-size: 1rem;
+            }
+
+            /* Dress Code Section */
+            .dresscode {
+                padding: 3rem 1rem;
+            }
+
+            .dresscode-title {
+                font-size: 2.2rem;
+            }
+
+            .dresscode-intro {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .dresscode-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+
+            .dresscode-item {
+                padding: 1.25rem 0.75rem;
+            }
+
+            .dresscode-role {
+                font-size: 0.6rem;
+            }
+
+            .dresscode-attire {
+                font-size: 1rem;
+            }
+
+            .color-palette {
+                margin-top: 2rem;
+            }
+
+            .color-palette-label {
+                font-size: 0.9rem;
+            }
+
+            .colors {
+                gap: 0.75rem;
+            }
+
+            .color-swatch {
+                width: 45px;
+                height: 45px;
+            }
+
+            /* Reminders Section */
+            .reminders {
+                padding: 3rem 1rem;
+            }
+
+            .reminders-title {
+                font-size: 2.2rem;
+            }
+
+            .reminder-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .reminder-icon {
+                font-size: 1.8rem;
+            }
+
+            .reminder-title {
+                font-size: 1.3rem;
+            }
+
+            .reminder-text {
+                font-size: 0.95rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2.5rem 1rem;
+            }
+
+            .footer-names {
+                font-size: 2rem;
+            }
+
+            .footer-date {
+                font-size: 0.9rem;
+            }
+
+            .footer-tagline {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Extra Small Mobile - 360px and below */
+        @media (max-width: 360px) {
+            .envelope-container {
+                width: 250px;
+                height: 340px;
+            }
+
+            .envelope,
+            .envelope-front {
+                height: 175px;
+            }
+
+            .envelope-wrapper {
+                height: 175px;
+            }
+
+            .envelope-flap {
+                top: 150px;
+                width: 250px;
+                border-left: 125px solid transparent;
+                border-right: 125px solid transparent;
+                border-top: 85px solid var(--envelope-color);
+            }
+
+            .envelope-flap::before {
+                border-left: 125px solid transparent;
+                border-right: 125px solid transparent;
+                border-top: 85px solid var(--envelope-shadow);
+            }
+
+            .wax-seal {
+                top: 210px;
+                width: 55px;
+                height: 55px;
+            }
+
+            .wax-seal-inner {
+                width: 40px;
+                height: 40px;
+            }
+
+            .seal-letter {
+                font-size: 1.2rem;
+            }
+
+            .envelope-front::before {
+                border-left: 125px solid transparent;
+                border-right: 125px solid transparent;
+                border-bottom: 85px solid var(--envelope-inner);
+            }
+
+            .invitation-card {
+                top: 150px;
+                left: 10px;
+                width: 230px;
+                height: 140px;
+                padding: 0.75rem;
+            }
+
+            .card-names {
+                font-size: 1.3rem;
+            }
+
+            .card-date {
+                font-size: 0.7rem;
+            }
+
+            .envelope-container.open .invitation-card {
+                transform: translateY(-150px);
+            }
+
+            .hero-names {
+                font-size: 2.2rem;
+            }
+
+            .hero-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .countdown-title {
+                font-size: 1.8rem;
+            }
+
+            .countdown-item {
+                min-width: 55px;
+                padding: 0.75rem 0.5rem;
+            }
+
+            .countdown-number {
+                font-size: 1.6rem;
+            }
+
+            .dresscode-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rsvp-title {
+                font-size: 2.5rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .rsvp-action-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .rsvp-button {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .rsvp-deadline {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .envelope-landing {
+                padding: 1rem;
+            }
+
+            .envelope-container {
+                width: 220px;
+                height: 290px;
+            }
+
+            .envelope,
+            .envelope-front {
+                height: 155px;
+            }
+
+            .envelope-wrapper {
+                height: 155px;
+            }
+
+            .envelope-intro {
+                margin-bottom: 0.5rem;
+            }
+
+            .envelope-intro p {
+                font-size: 0.8rem;
+            }
+
+            .section {
+                min-height: auto;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 2rem 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
