@@ -2113,6 +2113,77 @@
             gap: 2rem;
         }
 
+        .reminders-grid-top {
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 2rem;
+        }
+
+        /* Gift Guide Card - Full Width */
+        .gift-guide-card {
+            background: white;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-guide-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy), var(--gold), var(--dusty-blue));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .gift-guide-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(74, 85, 104, 0.15);
+        }
+
+        .gift-guide-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .gift-guide-qr {
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gift-guide-qr img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .gift-guide-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .gift-guide-content .reminder-title {
+            margin-bottom: 1rem;
+        }
+
+        .gift-guide-content .reminder-text {
+            margin: 0;
+        }
+
         .reminder-card {
             background: white;
             padding: 3rem 2rem;
@@ -3588,8 +3659,23 @@
                 gap: 1.5rem;
             }
 
+            .reminders-grid-top {
+                grid-template-columns: 1fr;
+            }
+
             .reminder-card {
                 padding: 2rem 1.5rem;
+            }
+
+            .gift-guide-card {
+                flex-direction: column;
+                padding: 2rem 1.5rem;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .gift-guide-content {
+                text-align: center;
             }
 
             /* Footer */
@@ -4586,24 +4672,29 @@
         <section class="section reminders" id="reminders">
             <div class="reminders-wrapper">
                 <h2 class="reminders-title fade-up">Kind Reminders</h2>
-                <div class="reminders-grid">
+                <div class="reminders-grid reminders-grid-top">
                     <div class="reminder-card fade-up delay-1">
-                        <div class="reminder-icon">&#127873;</div>
-                        <h3 class="reminder-title">Gift Guide</h3>
-                        <p class="reminder-text">Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a monetary contribution would be sincerely appreciated as we start our new life together.</p>
-                    </div>
-
-                    <div class="reminder-card fade-up delay-2">
                         <div class="reminder-icon">&#128203;</div>
                         <h3 class="reminder-title">Guest Guidelines</h3>
                         <p class="reminder-text"><strong>Adults Only</strong> — with the exception of immediate family.<br><br><strong>No Plus Ones</strong> — due to venue capacity, we can only accommodate guests named on the invitation.</p>
                     </div>
 
-                    <div class="reminder-card fade-up delay-3">
+                    <div class="reminder-card fade-up delay-2">
                         <div class="reminder-icon">&#128248;</div>
                         <h3 class="reminder-title">Snap & Share</h3>
                         <p class="reminder-text">Help us capture the magic! Please use our official hashtag when posting photos.</p>
                         <span class="hashtag">#wefinALYmadeitJERON</span>
+                    </div>
+                </div>
+
+                <!-- Gift Guide - Full Width with QR Code -->
+                <div class="gift-guide-card fade-up delay-3">
+                    <div class="gift-guide-qr">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=placeholder" alt="QR Code">
+                    </div>
+                    <div class="gift-guide-content">
+                        <h3 class="reminder-title">Gift Guide</h3>
+                        <p class="reminder-text">Your presence at our wedding is the greatest gift we could ask for. Should you wish to bless us further, a monetary gift would be deeply appreciated as we begin our life together. For your convenience, you may send it via online banking by scanning the QR code below. With heartfelt thanks.</p>
                     </div>
                 </div>
             </div>
