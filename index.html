@@ -2926,61 +2926,89 @@
 
         @media (max-width: 480px) {
             .hero {
-                align-items: center;
-                padding-left: 2%;
-                padding-right: 2%;
-            }
-
-            .hero-content {
-                padding: 2rem 1.5rem;
-                margin: 0 0.5rem;
-                max-width: 100%;
+                display: block;
+                padding: 0;
+                background: none;
             }
 
             .hero::before {
+                content: '';
+                display: block;
                 width: 100%;
-                background: linear-gradient(
-                    to bottom,
-                    rgba(250, 249, 247, 0.92) 0%,
-                    rgba(250, 249, 247, 0.85) 50%,
-                    rgba(250, 249, 247, 0.7) 100%
-                );
+                height: 40vh;
+                background: url('wed1.jpg') center 20% / cover no-repeat;
+                position: static;
+            }
+
+            .hero-content {
+                position: static;
+                padding: 1.5rem 2rem;
+                margin: 0;
+                max-width: 100%;
+                width: 100%;
+                border-radius: 0;
+                box-shadow: none;
+                border: none;
+                background: linear-gradient(135deg, rgba(250, 249, 247, 1) 0%, rgba(245, 243, 239, 1) 100%);
+            }
+
+            .hero-frame-corners {
+                display: none;
+            }
+
+            .hero-particles {
+                display: none;
             }
 
             .hero-names {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
             }
 
             .hero-ampersand {
-                font-size: 2rem;
+                font-size: 1.4rem;
+                margin: 0.2rem 0;
             }
 
-            .hero-ornament,
+            .hero-ornament {
+                font-size: 0.9rem;
+                letter-spacing: 0.15rem;
+                margin-bottom: 0.5rem;
+            }
+
             .hero-ornament-bottom {
-                font-size: 1.2rem;
-                letter-spacing: 0.3rem;
+                font-size: 0.9rem;
+                letter-spacing: 0.15rem;
+                margin: 0.5rem 0;
             }
 
             .hero-subtitle {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
             .hero-venue {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
+                margin-top: 0.5rem;
+            }
+
+            .hero-date-top {
+                font-size: 0.7rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.85rem;
+                margin: 0.3rem 0;
+            }
+
+            .hero-divider {
+                margin: 0.5rem auto;
+                width: 50px;
             }
 
             .hero-content::before,
-            .hero-content::after,
-            .hero-frame-corners::before,
-            .hero-frame-corners::after {
-                width: 30px;
-                height: 30px;
+            .hero-content::after {
+                display: none;
             }
-
-            .hero-content::before { top: 8px; left: 8px; }
-            .hero-content::after { bottom: 8px; right: 8px; }
-            .hero-frame-corners::before { top: 8px; right: 8px; }
-            .hero-frame-corners::after { bottom: 8px; left: 8px; }
 
             .countdown-item {
                 min-width: 70px;
