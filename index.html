@@ -2886,46 +2886,6 @@
 
         @media (max-width: 768px) {
             .hero {
-                align-items: center;
-                padding-left: 3%;
-                padding-right: 3%;
-            }
-
-            .hero-content {
-                padding: 2.5rem 2rem;
-                max-width: 90%;
-            }
-
-            .hero-content::before,
-            .hero-content::after,
-            .hero-frame-corners::before,
-            .hero-frame-corners::after {
-                width: 40px;
-                height: 40px;
-            }
-
-            .hero-content::before { top: 10px; left: 10px; }
-            .hero-content::after { bottom: 10px; right: 10px; }
-            .hero-frame-corners::before { top: 10px; right: 10px; }
-            .hero-frame-corners::after { bottom: 10px; left: 10px; }
-
-            .hero::before {
-                width: 100%;
-                background: linear-gradient(
-                    to bottom,
-                    rgba(250, 249, 247, 0.95) 0%,
-                    rgba(250, 249, 247, 0.85) 50%,
-                    rgba(250, 249, 247, 0.7) 100%
-                );
-            }
-
-            .hero-particles {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
                 display: block;
                 padding: 0;
                 background: none;
@@ -2935,14 +2895,14 @@
                 content: '';
                 display: block;
                 width: 100%;
-                height: 40vh;
+                height: 50vh;
                 background: url('wed1.jpg') center 20% / cover no-repeat;
                 position: static;
             }
 
             .hero-content {
                 position: static;
-                padding: 1.5rem 2rem;
+                padding: 2rem 2.5rem;
                 margin: 0;
                 max-width: 100%;
                 width: 100%;
@@ -2952,12 +2912,72 @@
                 background: linear-gradient(135deg, rgba(250, 249, 247, 1) 0%, rgba(245, 243, 239, 1) 100%);
             }
 
+            .hero-content::before,
+            .hero-content::after {
+                display: none;
+            }
+
             .hero-frame-corners {
                 display: none;
             }
 
             .hero-particles {
                 display: none;
+            }
+
+            .hero-names {
+                font-size: 3rem;
+            }
+
+            .hero-ampersand {
+                font-size: 1.8rem;
+                margin: 0.3rem 0;
+            }
+
+            .hero-ornament {
+                font-size: 1rem;
+                letter-spacing: 0.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-ornament-bottom {
+                font-size: 1rem;
+                letter-spacing: 0.2rem;
+                margin: 0.5rem 0;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .hero-venue {
+                font-size: 0.6rem;
+                margin-top: 0.5rem;
+            }
+
+            .hero-date-top {
+                font-size: 0.75rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.95rem;
+                margin: 0.3rem 0;
+            }
+
+            .hero-divider {
+                margin: 0.75rem auto;
+                width: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero::before {
+                height: 40vh;
+            }
+
+            .hero-content {
+                padding: 1.5rem 2rem;
             }
 
             .hero-names {
@@ -2972,13 +2992,11 @@
             .hero-ornament {
                 font-size: 0.9rem;
                 letter-spacing: 0.15rem;
-                margin-bottom: 0.5rem;
             }
 
             .hero-ornament-bottom {
                 font-size: 0.9rem;
                 letter-spacing: 0.15rem;
-                margin: 0.5rem 0;
             }
 
             .hero-subtitle {
@@ -2987,27 +3005,19 @@
 
             .hero-venue {
                 font-size: 0.55rem;
-                margin-top: 0.5rem;
             }
 
             .hero-date-top {
                 font-size: 0.7rem;
-                margin-bottom: 0.3rem;
             }
 
             .hero-tagline {
                 font-size: 0.85rem;
-                margin: 0.3rem 0;
             }
 
             .hero-divider {
                 margin: 0.5rem auto;
                 width: 50px;
-            }
-
-            .hero-content::before,
-            .hero-content::after {
-                display: none;
             }
 
             .countdown-item {
