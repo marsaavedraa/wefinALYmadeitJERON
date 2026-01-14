@@ -3674,6 +3674,70 @@
                 padding: 0 1rem;
             }
 
+            /* Details Section - stacked layout like mobile */
+            .details-card {
+                display: block;
+                text-align: center;
+            }
+
+            .detail-icon-wrapper {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .detail-label {
+                display: block;
+                margin: 0 auto 0.5rem auto;
+                width: fit-content;
+            }
+
+            .detail-title {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .details-center-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .detail-icon {
+                width: 90px;
+                height: 90px;
+                font-size: 2.2rem;
+            }
+
+            .detail-icon::before {
+                inset: -8px;
+            }
+
+            .detail-icon::after {
+                inset: -15px;
+            }
+
+            .detail-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .detail-content strong {
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+
+            .detail-time {
+                display: block;
+                margin: 1rem auto 0 auto;
+            }
+
+            .detail-venue {
+                display: block;
+            }
+
             /* Dress Code Section */
             .dresscode-grid {
                 grid-template-columns: repeat(2, 1fr);
