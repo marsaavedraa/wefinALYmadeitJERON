@@ -2153,10 +2153,16 @@
             transform: scaleX(1);
         }
 
+        .gift-guide-qr-container {
+            display: flex;
+            flex-shrink: 0;
+            gap: 1.5rem;
+        }
+
         .gift-guide-qr {
             flex-shrink: 0;
-            width: 150px;
-            height: 150px;
+            width: 220px;
+            height: 220px;
             padding: 10px;
             background: white;
             border: 2px solid var(--gold);
@@ -3778,6 +3784,17 @@
                 gap: 1.5rem;
             }
 
+            .gift-guide-qr-container {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .gift-guide-qr {
+                width: 130px;
+                height: 130px;
+            }
+
             .gift-guide-content {
                 text-align: center;
             }
@@ -4793,8 +4810,13 @@
 
                 <!-- Gift Guide - Full Width with QR Code -->
                 <div class="gift-guide-card fade-up delay-3">
-                    <div class="gift-guide-qr">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=placeholder" alt="QR Code">
+                    <div class="gift-guide-qr-container">
+                        <div class="gift-guide-qr">
+                            <img src="/QR1.jpg" alt="QR Code 1">
+                        </div>
+                        <div class="gift-guide-qr">
+                            <img src="/QR2.jpg" alt="QR Code 2">
+                        </div>
                     </div>
                     <div class="gift-guide-content">
                         <h3 class="reminder-title">Gift Guide</h3>
