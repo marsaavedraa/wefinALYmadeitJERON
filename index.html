@@ -3382,12 +3382,8 @@
         }
 
         /* Hidden YouTube iframe */
-        .youtube-player {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            pointer-events: none;
+        #audioPlayer {
+            display: none;
         }
 
         /* Mobile responsive for music player */
@@ -4382,14 +4378,10 @@
         </div>
     </div>
 
-    <!-- Hidden YouTube Player -->
-    <iframe
-        id="youtubePlayer"
-        class="youtube-player"
-        src="https://www.youtube.com/embed/kSNHxOFuO0Y?enablejsapi=1&autoplay=0&loop=1&playlist=kSNHxOFuO0Y"
-        allow="autoplay"
-        frameborder="0">
-    </iframe>
+    <!-- Hidden Audio Player -->
+    <audio id="audioPlayer" loop preload="auto">
+        <source src="PALAGI -  LYRICS.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- ==================== ENVELOPE LANDING PAGE ==================== -->
     <div class="envelope-landing" id="envelopeLanding">
@@ -5137,50 +5129,17 @@ to celebrate the love <em> God has blessed us with.</em>
 
         // ==================== MUSIC PLAYER ====================
         const musicPlayer = document.getElementById('musicPlayer');
-        const youtubePlayer = document.getElementById('youtubePlayer');
+        const audioPlayer = document.getElementById('audioPlayer');
         let isPlaying = false;
-        let player = null;
-
-        // Load YouTube IFrame API
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // YouTube API callback
-        window.onYouTubeIframeAPIReady = function() {
-            player = new YT.Player('youtubePlayer', {
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        };
-
-        function onPlayerReady(event) {
-            // Player is ready
-            console.log('YouTube player ready');
-        }
-
-        function onPlayerStateChange(event) {
-            // Update UI based on player state
-            if (event.data === YT.PlayerState.ENDED) {
-                // Loop the song
-                player.seekTo(0);
-                player.playVideo();
-            }
-        }
 
         // Toggle music on click
         musicPlayer.addEventListener('click', function() {
-            if (!player) return;
-
             if (isPlaying) {
-                player.pauseVideo();
+                audioPlayer.pause();
                 musicPlayer.classList.remove('playing');
                 isPlaying = false;
             } else {
-                player.playVideo();
+                audioPlayer.play();
                 musicPlayer.classList.add('playing');
                 isPlaying = true;
             }
@@ -5191,12 +5150,15 @@ to celebrate the love <em> God has blessed us with.</em>
             // Show music player with delay for smooth entrance
             setTimeout(() => {
                 musicPlayer.classList.add('visible');
-                // Autoplay music
-                if (player && player.playVideo) {
-                    player.playVideo();
+                // Try to autoplay music
+                audioPlayer.play().then(() => {
                     musicPlayer.classList.add('playing');
                     isPlaying = true;
-                }
+                }).catch(() => {
+                    // Autoplay blocked, user needs to tap play
+                    musicPlayer.classList.remove('playing');
+                    isPlaying = false;
+                });
             }, 800);
         });
 
